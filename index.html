@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Voice Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Voice to Voice Converter</h1>
+        <p class="description">This application converts your voice to text and then to a male synthetic voice in real-time.</p>
+        
+        <div class="controls">
+            <button id="startBtn" class="btn">Start Listening</button>
+            <button id="stopBtn" class="btn" disabled>Stop Listening</button>
+        </div>
+        
+        <div class="voice-controls">
+            <div class="voice-selector">
+                <label for="voiceSelect">Voice:</label>
+                <select id="voiceSelect" class="voice-select"></select>
+            </div>
+            <div class="speech-params">
+                <div class="param-control">
+                    <label for="pitchSlider">Pitch:</label>
+                    <input type="range" id="pitchSlider" min="0.1" max="2" step="0.1" value="1">
+                    <span id="pitchValue">1.0</span>
+                </div>
+                <div class="param-control">
+                    <label for="rateSlider">Speed:</label>
+                    <input type="range" id="rateSlider" min="0.5" max="1.5" step="0.1" value="0.9">
+                    <span id="rateValue">0.9</span>
+                </div>
+            </div>
+            <div class="voice-presets">
+                <button id="deepVoiceBtn" class="btn preset-btn">Use Deep Voice</button>
+                <button id="defaultVoiceBtn" class="btn preset-btn">Reset to Default</button>
+            </div>
+            <div class="test-voice-container">
+                <button id="testVoiceBtn" class="btn test-btn">Test Voice Settings</button>
+            </div>
+        </div>
+        
+        <!-- New Audio Output Forwarding Section -->
+        <div class="audio-forwarding">
+            <h3>Audio Output Forwarding</h3>
+            <div class="output-selector">
+                <label for="outputSelect">Audio Output Device:</label>
+                <select id="outputSelect" class="output-select">
+                    <option value="default">Default Output Device</option>
+                    <!-- Other devices will be populated by JavaScript -->
+                </select>
+                <button id="refreshOutputsBtn" class="btn refresh-btn">Refresh Devices</button>
+            </div>
+            <div class="audio-recording-controls">
+                <div class="record-control">
+                    <input type="checkbox" id="enableRecording" class="toggle-checkbox">
+                    <label for="enableRecording" class="toggle-label">Enable Audio Recording</label>
+                </div>
+                <button id="downloadRecordingBtn" class="btn download-btn" disabled>Download Recording</button>
+            </div>
+        </div>
+        
+        <div class="status-container">
+            <p>Status: <span id="status">Idle</span></p>
+        </div>
+        
+        <div class="conversion-container">
+            <div class="text-box">
+                <h3>Recognized Text</h3>
+                <div id="recognizedText" class="text-content"></div>
+            </div>
+        </div>
+        
+        <div class="audio-routing-container">
+            <h3>Audio Routing Setup</h3>
+            <div class="audio-routing-info">
+                <p>To route the synthesized voice to both your speakers and other applications:</p>
+                <ol>
+                    <li>Install a virtual audio cable software like <a href="https://vb-audio.com/Cable/" target="_blank">VB-Audio Virtual Cable</a> or <a href="https://vb-audio.com/Voicemeeter/" target="_blank">Voicemeeter</a>.</li>
+                    <li>Set your virtual cable as the default audio output device in your system settings.</li>
+                    <li>In Voicemeeter (or similar software), configure it to forward audio to both your physical speakers and the virtual output.</li>
+                    <li>Use the virtual output as an input in your target applications.</li>
+                </ol>
+                <p>This allows you to use the converted voice in other applications like streaming software, voice chat, or recording tools.</p>
+                
+                <div class="direct-routing">
+                    <h4>Direct Audio Forwarding</h4>
+                    <p>The app now supports direct audio forwarding to different output devices. Select your preferred output device from the dropdown above.</p>
+                    <p>Note: If using multiple audio outputs isn't working, you may still need to use virtual audio cable software for more complex routing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
